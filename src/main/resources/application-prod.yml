@@ -1,0 +1,6 @@
+server:
+  port: 9000
+  context-path: /boot
+user:
+  name: XiDian-ChenMiao
+  email: 786078509@qq.com
