@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
+import java.io.Serializable;
 
 /**
  * 文件描述：用户实体
@@ -11,7 +12,7 @@ import javax.validation.constraints.Min;
  * 创建时间：2017/6/3 13:48
  */
 @Entity(name = "tb_user")
-public class UserDomain {
+public class UserDomain implements Serializable {
     /**
      * 主键ID，自增
      */

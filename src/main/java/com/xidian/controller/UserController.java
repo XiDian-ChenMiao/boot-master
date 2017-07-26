@@ -1,6 +1,7 @@
 package com.xidian.controller;
 
-import com.xidian.domain.ResultDomain;
+import com.xidian.mapper.UserDomainMapper;
+import com.xidian.model.ResponseResult;
 import com.xidian.domain.UserDomain;
 import com.xidian.repository.UserRepository;
 import com.xidian.service.UserService;
@@ -23,6 +24,8 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserDomainMapper userDomainMapper;
 
     /**
      * 获取用户列表
@@ -40,7 +43,7 @@ public class UserController {
      */
     @GetMapping("/users/{id}")
     public UserDomain getById(@PathVariable("id") Integer id) {
-        return userRepository.findOne(id);
+        return userDomainMapper.find(id);
     }
 
     /**
@@ -48,11 +51,11 @@ public class UserController {
      * @return
      */
     @PostMapping("/users")
-    public ResultDomain<UserDomain> userAdd(@ModelAttribute("user") @Valid UserDomain user, BindingResult result) {
+    public ResponseResult<UserDomain> userAdd(@ModelAttribute("user") @Valid UserDomain user, BindingResult result) {
         if (result.hasErrors()) {
-            return ResultDomain.failure(1, result.getFieldError().getDefaultMessage());
+            return ResponseResult.failure(1, result.getFieldError().getDefaultMessage());
         }
-        return ResultDomain.success(userRepository.save(user));
+        return ResponseResult.success(userRepository.save(user));
     }
 
     /**

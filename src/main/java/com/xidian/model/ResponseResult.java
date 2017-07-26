@@ -1,11 +1,11 @@
-package com.xidian.domain;
+package com.xidian.model;
 
 /**
  * 文件描述：统一消息结果对象
  * 创建作者：陈苗
  * 创建时间：2017/6/3 16:38
  */
-public class ResultDomain<T> {
+public class ResponseResult<T> {
     /**
      * 提示码
      */
@@ -45,32 +45,32 @@ public class ResultDomain<T> {
 
     @Override
     public String toString() {
-        return "ResultDomain{" +
+        return "ResponseResult{" +
                 "code=" + code +
                 ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';
     }
 
-    public ResultDomain() {
+    public ResponseResult() {
 
     }
 
-    public ResultDomain(Integer code, String msg, T data) {
+    public ResponseResult(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public static ResultDomain success(Object obj) {
-        return new ResultDomain(0, "成功", obj);
+    public static ResponseResult success(Object obj) {
+        return new ResponseResult(0, "成功", obj);
     }
 
-    public static ResultDomain success() {
-        return new ResultDomain(0, "成功", null);
+    public static ResponseResult success() {
+        return new ResponseResult(0, "成功", null);
     }
 
-    public static ResultDomain failure(Integer code, String mesg) {
-        return new ResultDomain(code, mesg, null);
+    public static ResponseResult failure(Integer code, String mesg) {
+        return new ResponseResult(code, mesg, null);
     }
 }

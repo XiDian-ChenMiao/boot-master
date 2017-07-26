@@ -1,6 +1,6 @@
 package com.xidian.handler;
 
-import com.xidian.domain.ResultDomain;
+import com.xidian.model.ResponseResult;
 import com.xidian.exception.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,13 +20,13 @@ public class ExceptionHandle {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public ResultDomain handle(Exception e) {
+    public ResponseResult handle(Exception e) {
         if (e instanceof BusinessException) {
             BusinessException be = (BusinessException) e;
-            return ResultDomain.failure(be.getCode(), be.getMessage());
+            return ResponseResult.failure(be.getCode(), be.getMessage());
         } else {
             logger.error("[系统异常] : {}", e);
-            return ResultDomain.failure(-1, "未知错误");
+            return ResponseResult.failure(-1, "未知错误");
         }
     }
 }
